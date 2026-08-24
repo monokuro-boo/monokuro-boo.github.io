@@ -1,25 +1,45 @@
 /* ======================================
-   NOIR CAFE
-   style.css
+   カラーパレット
 ====================================== */
 
-/* ---------- カラー ---------- */
-
 :root{
+
+    /* メイン背景 */
     --bg:#1A120B;
+
+    /* セクション背景 */
     --bg-light:#24170F;
+
+    /* カード背景 */
     --card:#2D1F15;
 
+    /* ゴールド */
     --gold:#D4AF37;
+
+    /* シャンパンゴールド */
     --champagne:#C8A97E;
 
+    /* メイン文字 */
     --text:#F5F1EA;
+
+    /* サブ文字 */
     --sub:#B9AA97;
 
-    --shadow:0 20px 40px rgba(0,0,0,.35);
+    /* 境界線 */
+    --line:rgba(212,175,55,.15);
+
+    /* 影 */
+    --shadow:
+        0 20px 40px rgba(0,0,0,.35);
+
+    /* ヘッダー高さ */
+    --header-height:88px;
 }
 
-/* ---------- リセット ---------- */
+
+/* ======================================
+   リセット
+====================================== */
 
 *{
     margin:0;
@@ -27,31 +47,40 @@
     box-sizing:border-box;
 }
 
+
 html{
     scroll-behavior:smooth;
 }
 
+
 body{
 
     background:
-    linear-gradient(
-        180deg,
-        #1A120B 0%,
-        #24170F 50%,
-        #2D1F15 100%
-    );
+        linear-gradient(
+            180deg,
+            #1A120B 0%,
+            #24170F 50%,
+            #2D1F15 100%
+        );
 
     color:var(--text);
 
     font-family:
-    "Noto Serif JP",
-    serif;
+        "Noto Serif JP",
+        serif;
 
     line-height:1.8;
 
     overflow-x:hidden;
 
+    min-height:100vh;
 }
+
+
+/*
+    ページ全体に薄い光を入れて
+    ダークブラウンでも暗くなりすぎないようにする
+*/
 
 body::before{
 
@@ -64,124 +93,244 @@ body::before{
     pointer-events:none;
 
     background:
-    radial-gradient(
-        circle at top center,
-        rgba(212,175,55,.06),
-        transparent 50%
-    );
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(212,175,55,.06),
+            transparent 50%
+        );
 
     z-index:-1;
-
 }
 
+
 img{
+
     width:100%;
+
     display:block;
 }
 
+
 a{
-    text-decoration:none;
+
     color:inherit;
+
+    text-decoration:none;
 }
 
+
+button{
+
+    font-family:inherit;
+}
+
+
 ul{
+
     list-style:none;
 }
 
-/* ---------- 共通 ---------- */
+
+/* ======================================
+   共通コンテナ
+====================================== */
 
 .container{
+
     width:min(1200px,90%);
-    margin:auto;
+
+    margin:0 auto;
 }
+
 
 section{
+
     padding:120px 0;
+
 }
+
+
+/* セクション見出し */
 
 .section-title{
+
     text-align:center;
+
     font-size:2.5rem;
+
+    font-weight:500;
+
+    letter-spacing:2px;
+
     color:var(--champagne);
+
     margin-bottom:40px;
 }
+
+
+/* セクション本文 */
 
 .section-text{
+
     max-width:800px;
-    margin:auto;
+
+    margin:0 auto 40px;
+
     text-align:center;
+
     color:var(--sub);
-    margin-bottom:40px;
+
+    line-height:2;
 }
 
-/* ---------- Loader ---------- */
+
+/* ======================================
+   ローディング画面
+====================================== */
 
 #loader{
+
     position:fixed;
+
     inset:0;
 
-    background:var(--bg);
+    background:
+        radial-gradient(
+            circle at center,
+            #24170F 0%,
+            #1A120B 65%,
+            #120B07 100%
+        );
 
     display:flex;
+
     flex-direction:column;
 
     justify-content:center;
+
     align-items:center;
 
     z-index:9999;
+
+    opacity:1;
+
+    visibility:visible;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
 }
 
+
+/*
+    JavaScript側で
+    #loader.loaded
+    が付いたら消える
+*/
+
+#loader.loaded{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+}
+
+
 #loader h1{
+
     margin-top:20px;
+
     color:var(--champagne);
+
+    font-size:1.5rem;
+
+    font-weight:500;
+
     letter-spacing:5px;
 }
 
+
+/* コーヒーの湯気をイメージしたドット */
+
 .steam{
+
     display:flex;
+
+    align-items:center;
+
     gap:10px;
 }
 
+
 .steam span{
+
     width:12px;
+
     height:12px;
 
     border-radius:50%;
+
     background:var(--gold);
 
-    animation:steam 1.2s infinite;
+    box-shadow:
+        0 0 15px rgba(212,175,55,.25);
+
+    animation:
+        steam 1.2s infinite ease-in-out;
 }
 
+
 .steam span:nth-child(2){
+
     animation-delay:.2s;
 }
 
+
 .steam span:nth-child(3){
+
     animation-delay:.4s;
 }
+
 
 @keyframes steam{
 
     0%{
-        transform:translateY(0);
+
+        transform:
+            translateY(0)
+            scale(.9);
+
         opacity:.2;
     }
 
     50%{
-        transform:translateY(-15px);
+
+        transform:
+            translateY(-15px)
+            scale(1);
+
         opacity:1;
     }
 
     100%{
-        transform:translateY(0);
+
+        transform:
+            translateY(0)
+            scale(.9);
+
         opacity:.2;
     }
-
 }
 
-/* ---------- Header ---------- */
+
+/* ======================================
+   ヘッダー
+====================================== */
 
 #header{
+
     position:fixed;
 
     top:0;
@@ -189,130 +338,434 @@ section{
 
     width:100%;
 
-    padding:20px 5%;
+    min-height:var(--header-height);
+
+    padding:
+        15px
+        5%;
 
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
 
-    background:rgba(26,18,11,.85);
+    /*
+        左：ブランド
+        中：ナビ
+        右：予約
+    */
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    background:
+        rgba(26,18,11,.85);
 
     backdrop-filter:blur(15px);
 
+    -webkit-backdrop-filter:blur(15px);
+
     border-bottom:
-    1px solid rgba(212,175,55,.15);
+        1px solid var(--line);
 
     z-index:1000;
 
-    transition:.3s;
+    transition:
+        padding .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
 }
+
+
+/*
+    スクロール時にJSから
+    .scrolled が付く想定
+*/
 
 #header.scrolled{
-    padding:12px 5%;
+
+    padding-top:10px;
+
+    padding-bottom:10px;
+
+    background:
+        rgba(26,18,11,.94);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
 }
 
-.logo{
+
+/* ======================================
+   ヘッダー ブランド
+====================================== */
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    flex-shrink:0;
+
+    transition:opacity .3s ease;
+}
+
+
+.brand:hover{
+
+    opacity:.85;
+}
+
+
+/*
+    ヘッダー用ロゴ
+
+    ここが大きくなりすぎないように
+    サイズを明確に固定
+*/
+
+.brand-logo{
+
+    width:48px;
+
+    height:48px;
+
+    object-fit:contain;
+
+    display:block;
+
+    flex-shrink:0;
+
+    filter:
+        drop-shadow(
+            0 3px 10px
+            rgba(0,0,0,.35)
+        );
+}
+
+
+/* サイト名 */
+
+.brand-name{
+
     color:var(--champagne);
 
-    font-size:1.5rem;
+    font-size:1.15rem;
 
-    font-weight:bold;
+    font-weight:700;
 
     letter-spacing:3px;
+
+    white-space:nowrap;
 }
+
+
+/* ======================================
+   PCナビゲーション
+====================================== */
 
 .nav-menu{
+
     display:flex;
-    gap:30px;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:28px;
+
+    margin-left:auto;
 }
+
 
 .nav-menu a{
-    transition:.3s;
+
+    position:relative;
+
+    color:var(--text);
+
+    font-size:.95rem;
+
+    white-space:nowrap;
+
+    transition:
+        color .3s ease,
+        opacity .3s ease;
 }
 
+
 .nav-menu a:hover{
+
     color:var(--gold);
 }
 
-/* ---------- Hamburger ---------- */
+
+/*
+    ナビゲーション下の細いライン
+*/
+
+.nav-menu a:not(.header-reservation)::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-7px;
+
+    width:0;
+
+    height:1px;
+
+    background:var(--gold);
+
+    transform:translateX(-50%);
+
+    transition:
+        width .3s ease;
+}
+
+
+.nav-menu a:not(.header-reservation):hover::after{
+
+    width:100%;
+}
+
+
+/* ======================================
+   ヘッダー予約ボタン
+====================================== */
+
+.header-reservation{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+        8px
+        20px;
+
+    margin-left:5px;
+
+    border:
+        1px solid var(--gold);
+
+    border-radius:999px;
+
+    color:var(--gold) !important;
+
+    background:
+        rgba(212,175,55,.04);
+
+    font-size:.9rem;
+
+    letter-spacing:1px;
+
+    white-space:nowrap;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.header-reservation:hover{
+
+    background:var(--gold);
+
+    color:var(--bg) !important;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(212,175,55,.15);
+}
+
+
+/*
+    予約ボタンには下線を付けない
+*/
+
+.nav-menu
+.header-reservation::after{
+
+    display:none !important;
+}
+
+
+/* ======================================
+   ハンバーガーメニュー
+====================================== */
 
 .hamburger{
+
     display:none;
 
     flex-direction:column;
 
+    justify-content:center;
+
+    align-items:center;
+
     gap:6px;
 
-    background:none;
+    width:44px;
+
+    height:44px;
+
+    padding:0;
+
+    background:transparent;
+
     border:none;
 
     cursor:pointer;
 
+    flex-shrink:0;
+
     z-index:1100;
 }
 
+
 .hamburger span{
-    width:30px;
-    height:3px;
+
+    display:block;
+
+    width:28px;
+
+    height:2px;
 
     background:var(--gold);
 
     border-radius:20px;
 
-    transition:.3s;
+    transition:
+        transform .3s ease,
+        opacity .3s ease;
 }
 
-.hamburger.active span:nth-child(1){
+
+/*
+    開いた時に
+    「×」になる
+*/
+
+.hamburger.active
+span:nth-child(1){
+
     transform:
-    translateY(9px)
-    rotate(45deg);
+        translateY(8px)
+        rotate(45deg);
 }
 
-.hamburger.active span:nth-child(2){
+
+.hamburger.active
+span:nth-child(2){
+
     opacity:0;
 }
 
-.hamburger.active span:nth-child(3){
+
+.hamburger.active
+span:nth-child(3){
+
     transform:
-    translateY(-9px)
-    rotate(-45deg);
+        translateY(-8px)
+        rotate(-45deg);
 }
 
-/* ---------- Mobile Menu ---------- */
+
+/* ======================================
+   モバイルメニュー
+====================================== */
 
 .mobile-menu{
 
-    display:none;
-
     position:fixed;
 
-    top:80px;
+    top:var(--header-height);
+
     left:0;
 
     width:100%;
 
-    background:var(--bg-light);
+    display:none;
 
     flex-direction:column;
 
     align-items:center;
 
-    gap:25px;
+    gap:24px;
 
-    padding:40px 0;
+    padding:
+        35px
+        20px
+        40px;
+
+    background:
+        rgba(36,23,15,.97);
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+    border-bottom:
+        1px solid var(--line);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.3);
 
     z-index:999;
 }
 
+
+/*
+    JSによって .active が付いた時に表示
+*/
+
 .mobile-menu.active{
+
     display:flex;
 }
 
+
 .mobile-menu a{
-    font-size:1.1rem;
+
+    font-size:1.05rem;
+
+    color:var(--text);
+
+    letter-spacing:1px;
+
+    transition:
+        color .3s ease,
+        transform .3s ease;
 }
 
-/* ---------- Hero ---------- */
+
+.mobile-menu a:hover{
+
+    color:var(--gold);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ======================================
+   Hero
+====================================== */
 
 .hero{
 
@@ -322,23 +775,59 @@ section{
 
     overflow:hidden;
 
-    background:#24170F;
+    background:
+        #24170F;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
 
+
+/*
+    pictureを画面いっぱいに配置
+*/
+
 .hero picture{
+
     position:absolute;
 
     inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
 }
 
-.hero img{
+
+/*
+    Hero画像
+
+    PC / Tablet / Mobileの
+    picture切り替えに対応
+*/
+
+.hero picture img{
+
     width:100%;
+
     height:100%;
 
     object-fit:cover;
 
     transform:scale(1.08);
+
+    transform-origin:center center;
 }
+
+
+/*
+    森の画像を少し暗くする
+*/
 
 .hero-overlay{
 
@@ -347,8 +836,20 @@ section{
     inset:0;
 
     background:
-    rgba(0,0,0,.45);
+        linear-gradient(
+            180deg,
+            rgba(10,7,5,.45) 0%,
+            rgba(10,7,5,.25) 45%,
+            rgba(10,7,5,.65) 100%
+        );
+
+    z-index:2;
 }
+
+
+/* ======================================
+   Hero コンテンツ
+====================================== */
 
 .hero-content{
 
@@ -358,47 +859,137 @@ section{
     left:50%;
 
     transform:
-    translate(-50%,-50%);
-
-    text-align:center;
+        translate(-50%,-50%);
 
     width:90%;
 
     max-width:900px;
 
+    text-align:center;
+
     z-index:10;
+
+    padding:
+        20px;
 }
+
+
+/* ======================================
+   Hero ロゴ
+====================================== */
+
+.hero-logo{
+
+    width:150px;
+
+    height:150px;
+
+    object-fit:contain;
+
+    margin:
+        0 auto 25px;
+
+    display:block;
+
+    filter:
+        drop-shadow(
+            0 5px 20px
+            rgba(0,0,0,.45)
+        );
+}
+
+
+/* ======================================
+   Hero サブタイトル
+====================================== */
 
 .hero-subtitle{
 
-    color:var(--champagne);
+    color:#F5F1EA;
+
+    font-size:.9rem;
 
     letter-spacing:4px;
 
     margin-bottom:15px;
+
+    text-transform:none;
+
+    text-shadow:
+    0 2px 12px rgba(0,0,0,.8);
 }
+
+
+/* ======================================
+   Hero メインタイトル
+====================================== */
 
 .hero-content h1{
 
+    color:var(--text);
+
     font-size:4rem;
 
-    line-height:1.3;
+    font-weight:500;
+
+    line-height:1.35;
+
+    letter-spacing:3px;
 
     margin-bottom:20px;
+
+    text-shadow:
+        0 4px 20px rgba(0,0,0,.5);
+
+/* 日本語の句読点による視覚的なズレを補正 */
+    transform:translateX(0.15em);
 }
+
+
+/* ======================================
+   Hero 説明文
+====================================== */
 
 .hero-description{
-    color:var(--sub);
-    margin-bottom:30px;
+
+    color:
+        #E2D8CC;
+
+    font-size:1rem;
+
+    line-height:2;
+
+    margin-bottom:0;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.5);
 }
 
-/* ---------- Button ---------- */
+
+/*
+    今回Hero中央から予約ボタンを
+    外したため、hero内には
+    予約ボタンを置かない設計
+*/
+
+
+/* ======================================
+   ボタン共通
+====================================== */
 
 .btn{
 
-    display:inline-block;
+    display:inline-flex;
 
-    padding:14px 36px;
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:50px;
+
+    padding:
+        13px
+        32px;
 
     border-radius:999px;
 
@@ -406,20 +997,36 @@ section{
 
     color:var(--bg);
 
-    font-weight:bold;
+    font-size:.95rem;
 
-    transition:.3s;
+    font-weight:700;
+
+    letter-spacing:1px;
 
     position:relative;
 
     overflow:hidden;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
 }
+
 
 .btn:hover{
 
     transform:
-    translateY(-3px);
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(212,175,55,.15);
 }
+
+
+/*
+    ボタンに光が流れる
+*/
 
 .btn::before{
 
@@ -428,155 +1035,287 @@ section{
     position:absolute;
 
     top:0;
+
     left:-100%;
 
     width:50%;
+
     height:100%;
 
     background:
-    linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.4),
-    transparent);
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.4),
+            transparent
+        );
 
-    transition:.8s;
+    transition:
+        left .8s ease;
 }
 
+
 .btn:hover::before{
+
     left:150%;
 }
 
-/* ---------- Cards ---------- */
+
+/*
+    Instagramボタンなどの
+    セクション内ボタン用
+*/
+
+.instagram .btn{
+
+    margin-top:5px;
+}
+
+
+/* ======================================
+   Recommended Cards
+====================================== */
 
 .cards{
 
     display:grid;
 
     grid-template-columns:
-    repeat(2,1fr);
+        repeat(2,minmax(0,1fr));
 
     gap:30px;
 }
+
 
 .card{
 
     background:var(--card);
 
+    border:
+        1px solid
+        rgba(212,175,55,.08);
+
     border-radius:15px;
 
     overflow:hidden;
 
-    box-shadow:var(--shadow);
+    box-shadow:
+        var(--shadow);
 
-    transition:.4s;
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease,
+        border-color .4s ease;
 }
+
 
 .card:hover{
 
     transform:
-    translateY(-10px);
+        translateY(-10px);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.45);
+
+    border-color:
+        rgba(212,175,55,.2);
 }
 
+
 .card img{
+
+    width:100%;
 
     height:300px;
 
     object-fit:cover;
 }
 
+
 .card-body{
+
     padding:25px;
 }
 
+
 .card-body h3{
+
     color:var(--champagne);
+
+    font-size:1.3rem;
+
     margin-bottom:10px;
 }
 
-/* ---------- Store ---------- */
+
+.card-body p{
+
+    color:var(--sub);
+
+    line-height:1.9;
+}
+
+
+/* ======================================
+   店舗紹介
+====================================== */
 
 .store-grid{
 
     display:grid;
 
     grid-template-columns:
-    1fr 1fr;
+        minmax(0,1fr)
+        minmax(0,1fr);
 
     gap:50px;
 
     align-items:center;
 }
 
-.store-content p{
-    margin-bottom:30px;
+
+.store-image{
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+    box-shadow:
+        var(--shadow);
 }
 
-/* ---------- Instagram ---------- */
+
+.store-image img{
+
+    width:100%;
+
+    height:450px;
+
+    object-fit:cover;
+
+    transition:
+        transform .8s ease;
+}
+
+
+.store-image:hover img{
+
+    transform:
+        scale(1.04);
+}
+
+
+.store-content{
+
+    text-align:left;
+}
+
+
+.store-content
+.section-title{
+
+    text-align:left;
+
+    margin-bottom:25px;
+}
+
+
+.store-content p{
+
+    color:var(--sub);
+
+    margin-bottom:30px;
+
+    line-height:2;
+}
+
+
+/* ======================================
+   Instagram
+====================================== */
 
 .instagram{
+
     text-align:center;
+
+    background:
+        rgba(18,11,7,.18);
 }
 
-/* ---------- News ---------- */
+
+.instagram .section-text{
+
+    margin-bottom:20px;
+}
+
+
+/* ======================================
+   News
+====================================== */
 
 .news-list{
 
+    width:100%;
+
     max-width:800px;
 
-    margin:auto;
+    margin:0 auto;
 }
+
 
 .news-list li{
 
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
     padding:20px 0;
 
+    color:var(--text);
+
     border-bottom:
-    1px solid rgba(255,255,255,.1);
+        1px solid
+        rgba(255,255,255,.1);
 }
+
 
 .news-list span{
 
     color:var(--champagne);
 
-    margin-right:20px;
+    font-size:.9rem;
+
+    white-space:nowrap;
 }
 
-/* ---------- Footer ---------- */
 
-footer{
-
-    background:#120b07;
-
-    padding:60px 20px;
-
-    text-align:center;
-}
-
-.footer-inner h3{
-
-    color:var(--champagne);
-
-    margin-bottom:15px;
-}
-
-.footer-inner p{
-    color:var(--sub);
-}
-
-/* ---------- Page Top ---------- */
+/* ======================================
+   Page Top
+====================================== */
 
 #page-top{
 
     position:fixed;
 
     right:20px;
+
     bottom:20px;
 
     width:50px;
+
     height:50px;
 
-    border:none;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:
+        1px solid
+        rgba(26,18,11,.3);
 
     border-radius:50%;
 
@@ -584,84 +1323,581 @@ footer{
 
     color:var(--bg);
 
+    font-size:1.1rem;
+
     cursor:pointer;
 
     z-index:100;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
 }
 
-/* ---------- GSAP ---------- */
+
+#page-top:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(212,175,55,.2);
+}
+
+
+/* ======================================
+   Footer
+====================================== */
+
+footer{
+
+    background:
+        #120B07;
+
+    padding:
+        60px 20px;
+
+    text-align:center;
+
+    border-top:
+        1px solid
+        rgba(212,175,55,.08);
+}
+
+
+.footer-inner h3{
+
+    color:var(--champagne);
+
+    font-size:1.3rem;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+}
+
+
+.footer-inner p{
+
+    color:var(--sub);
+
+    margin-bottom:5px;
+}
+
+
+.footer-inner small{
+
+    display:block;
+
+    margin-top:20px;
+
+    color:
+        rgba(185,170,151,.7);
+}
+
+
+/* ======================================
+   GSAP / スクロールアニメーション
+====================================== */
+
+/*
+    gsap.jsでアニメーションさせるための初期状態
+
+    JavaScriptが動かない場合でも
+    コンテンツが完全に消えないようにするため、
+    animation用クラスを使う場合は
+    JS側との連携が必要です。
+*/
 
 .fade-section{
 
     opacity:0;
 
     transform:
-    translateY(50px);
+        translateY(50px);
 }
 
-/* ---------- Tablet ---------- */
 
-@media(max-width:1199px){
+/* ======================================
+   Tablet
+   768px ～ 1199px
+====================================== */
 
-    .hero-content h1{
-        font-size:3rem;
+@media (max-width:1199px){
+
+    :root{
+
+        --header-height:80px;
     }
 
-    .store-grid{
-        grid-template-columns:1fr;
+
+    #header{
+
+        padding:
+            14px 4%;
     }
 
-}
 
-/* ---------- Mobile ---------- */
+    #header.scrolled{
 
-@media(max-width:767px){
-
-    section{
-        padding:80px 0;
+        padding:
+            10px 4%;
     }
 
-    .section-title{
-        font-size:2rem;
+
+    .brand-logo{
+
+        width:44px;
+
+        height:44px;
     }
 
-    .hero-content h1{
-        font-size:2.2rem;
+
+    .brand-name{
+
+        font-size:1rem;
+
+        letter-spacing:2px;
     }
 
-    .hero-description{
-        font-size:.95rem;
-    }
+
+    /*
+        タブレットではナビが窮屈になりやすいため、
+        ハンバーガーを表示
+    */
 
     .nav-menu{
+
         display:none;
     }
 
+
     .hamburger{
+
         display:flex;
     }
 
-    .cards{
-        grid-template-columns:1fr;
+
+    .hero-content h1{
+
+        font-size:3.2rem;
+
+        letter-spacing:2px;
     }
 
+
+    .hero-logo{
+
+        width:130px;
+
+        height:130px;
+
+        margin-bottom:20px;
+    }
+
+
+    .store-grid{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+    }
+
+
+    .store-image img{
+
+        height:400px;
+    }
+
+
+    .store-content{
+
+        text-align:center;
+    }
+
+
+    .store-content
+    .section-title{
+
+        text-align:center;
+    }
+}
+
+
+/* ======================================
+   Mobile
+   767px以下
+====================================== */
+
+@media (max-width:767px){
+
+    :root{
+
+        --header-height:72px;
+    }
+
+
+    /* ---------- 共通 ---------- */
+
+    section{
+
+        padding:80px 0;
+    }
+
+
+    .container{
+
+        width:88%;
+    }
+
+
+    .section-title{
+
+        font-size:2rem;
+
+        letter-spacing:1px;
+
+        margin-bottom:30px;
+    }
+
+
+    .section-text{
+
+        font-size:.95rem;
+
+        line-height:2;
+    }
+
+
+    /* ---------- Header ---------- */
+
+    #header{
+
+        min-height:72px;
+
+        padding:
+            12px 5%;
+
+        gap:10px;
+    }
+
+
+    #header.scrolled{
+
+        padding:
+            9px 5%;
+    }
+
+
+    .brand{
+
+        gap:9px;
+    }
+
+
+    .brand-logo{
+
+        width:42px;
+
+        height:42px;
+    }
+
+
+    .brand-name{
+
+        font-size:.95rem;
+
+        letter-spacing:2px;
+    }
+
+
+    .hamburger{
+
+        width:42px;
+
+        height:42px;
+    }
+
+
+    .hamburger span{
+
+        width:27px;
+
+        height:2px;
+    }
+
+
+    /*
+        モバイルメニュー
+    */
+
+    .mobile-menu{
+
+        top:72px;
+
+        padding:
+            30px
+            20px
+            35px;
+
+        gap:20px;
+    }
+
+
+    .mobile-menu a{
+
+        font-size:1rem;
+    }
+
+
+    /* ---------- Hero ---------- */
+
+    .hero{
+
+        min-height:100svh;
+    }
+
+
+    .hero-content{
+
+        width:92%;
+
+        padding:
+            15px;
+    }
+
+
+    .hero-logo{
+
+        width:105px;
+
+        height:105px;
+
+        margin:
+            0 auto 18px;
+    }
+
+
+    .hero-subtitle{
+
+        font-size:.7rem;
+
+        letter-spacing:2px;
+
+        margin-bottom:10px;
+    }
+
+
+    .hero-content h1{
+
+        font-size:2.1rem;
+
+        line-height:1.5;
+
+        letter-spacing:1px;
+
+        margin-bottom:15px;
+    }
+
+
+    .hero-description{
+
+        font-size:.85rem;
+
+        line-height:1.9;
+    }
+
+
+    /* ---------- Cards ---------- */
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+        gap:25px;
+    }
+
+
+    .card img{
+
+        height:240px;
+    }
+
+
+    .card-body{
+
+        padding:20px;
+    }
+
+
+    /* ---------- Store ---------- */
+
+    .store-grid{
+
+        grid-template-columns:1fr;
+
+        gap:30px;
+    }
+
+
+    .store-image img{
+
+        height:280px;
+    }
+
+
+    .store-content p{
+
+        font-size:.95rem;
+
+        margin-bottom:25px;
+    }
+
+
+    /* ---------- Instagram ---------- */
+
+    .instagram .section-text{
+
+        margin-bottom:25px;
+    }
+
+
+    .instagram .btn{
+
+        margin-top:0;
+    }
+
+
+    /* ---------- News ---------- */
+
+    .news-list li{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:5px;
+
+        padding:18px 0;
+    }
+
+
+    .news-list span{
+
+        margin-right:0;
+
+        font-size:.8rem;
+    }
+
+
+    /* ---------- Page Top ---------- */
+
     #page-top{
+
+        right:15px;
+
+        bottom:15px;
+
         width:45px;
+
         height:45px;
     }
 
+
+    /* ---------- Footer ---------- */
+
+    footer{
+
+        padding:
+            50px 20px;
+    }
 }
 
-/* ---------- Loader Fade ---------- */
 
-#loader.loaded{
+/* ======================================
+   小型スマートフォン
+   480px以下
+====================================== */
 
-    opacity:0;
+@media (max-width:480px){
 
-    visibility:hidden;
+    .brand-logo{
 
-    transition:
-    opacity .8s ease,
-    visibility .8s ease;
+        width:38px;
 
+        height:38px;
+    }
+
+
+    .brand-name{
+
+        font-size:.85rem;
+
+        letter-spacing:1.5px;
+    }
+
+
+    .hero-logo{
+
+        width:90px;
+
+        height:90px;
+    }
+
+
+    .hero-content h1{
+
+        font-size:1.85rem;
+    }
+
+
+    .hero-description{
+
+        font-size:.8rem;
+    }
+}
+
+
+/* ======================================
+   アニメーション軽減設定
+====================================== */
+
+/*
+    OS側で「視差効果を減らす」設定をしている
+    ユーザーには、アニメーションを弱める。
+*/
+
+@media (prefers-reduced-motion:reduce){
+
+    html{
+
+        scroll-behavior:auto;
+    }
+
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        transition-duration:.01ms !important;
+    }
+
+
+    .hero picture img{
+
+        transform:none;
+    }
+
+
+    .fade-section{
+
+        opacity:1;
+
+        transform:none;
+    }
 }
