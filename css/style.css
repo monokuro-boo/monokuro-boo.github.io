@@ -4,35 +4,25 @@
 
 :root{
 
-    /* メイン背景 */
     --bg:#1A120B;
 
-    /* セクション背景 */
     --bg-light:#24170F;
 
-    /* カード背景 */
     --card:#2D1F15;
 
-    /* ゴールド */
     --gold:#D4AF37;
 
-    /* シャンパンゴールド */
     --champagne:#C8A97E;
 
-    /* メイン文字 */
     --text:#F5F1EA;
 
-    /* サブ文字 */
     --sub:#B9AA97;
 
-    /* 境界線 */
     --line:rgba(212,175,55,.15);
 
-    /* 影 */
     --shadow:
         0 20px 40px rgba(0,0,0,.35);
 
-    /* ヘッダー高さ */
     --header-height:88px;
 }
 
@@ -77,11 +67,6 @@ body{
 }
 
 
-/*
-    ページ全体に薄い光を入れて
-    ダークブラウンでも暗くなりすぎないようにする
-*/
-
 body::before{
 
     content:"";
@@ -104,29 +89,23 @@ body::before{
 
 
 img{
-
     width:100%;
-
     display:block;
 }
 
 
 a{
-
     color:inherit;
-
     text-decoration:none;
 }
 
 
 button{
-
     font-family:inherit;
 }
 
 
 ul{
-
     list-style:none;
 }
 
@@ -144,13 +123,9 @@ ul{
 
 
 section{
-
     padding:120px 0;
-
 }
 
-
-/* セクション見出し */
 
 .section-title{
 
@@ -168,13 +143,12 @@ section{
 }
 
 
-/* セクション本文 */
-
 .section-text{
 
     max-width:800px;
 
-    margin:0 auto 40px;
+    margin:
+        0 auto 40px;
 
     text-align:center;
 
@@ -222,12 +196,6 @@ section{
 }
 
 
-/*
-    JavaScript側で
-    #loader.loaded
-    が付いたら消える
-*/
-
 #loader.loaded{
 
     opacity:0;
@@ -252,8 +220,6 @@ section{
 }
 
 
-/* コーヒーの湯気をイメージしたドット */
-
 .steam{
 
     display:flex;
@@ -275,7 +241,8 @@ section{
     background:var(--gold);
 
     box-shadow:
-        0 0 15px rgba(212,175,55,.25);
+        0 0 15px
+        rgba(212,175,55,.25);
 
     animation:
         steam 1.2s infinite ease-in-out;
@@ -283,13 +250,11 @@ section{
 
 
 .steam span:nth-child(2){
-
     animation-delay:.2s;
 }
 
 
 .steam span:nth-child(3){
-
     animation-delay:.4s;
 }
 
@@ -341,18 +306,11 @@ section{
     min-height:var(--header-height);
 
     padding:
-        15px
-        5%;
+        15px 5%;
 
     display:flex;
 
     align-items:center;
-
-    /*
-        左：ブランド
-        中：ナビ
-        右：予約
-    */
 
     justify-content:space-between;
 
@@ -377,11 +335,6 @@ section{
 }
 
 
-/*
-    スクロール時にJSから
-    .scrolled が付く想定
-*/
-
 #header.scrolled{
 
     padding-top:10px;
@@ -392,12 +345,52 @@ section{
         rgba(26,18,11,.94);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.25);
+        0 10px 30px
+        rgba(0,0,0,.25);
+}
+
+/* ======================================
+   Concept
+====================================== */
+
+.concept .section-text{
+    max-width:1000px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 
+/* コンセプトのメインメッセージ */
+
+.concept-lead{
+
+    font-size:1.5rem;
+
+    color:var(--champagne);
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+
+/* コンセプト説明文 */
+
+.concept-description{
+
+    font-size:1.05rem;
+
+    color:var(--sub);
+
+    text-align:center;
+
+    line-height:2.2;
+
+    margin-bottom:0;
+}
+
 /* ======================================
-   ヘッダー ブランド
+   ブランド
 ====================================== */
 
 .brand{
@@ -410,22 +403,15 @@ section{
 
     flex-shrink:0;
 
-    transition:opacity .3s ease;
+    transition:
+        opacity .3s ease;
 }
 
 
 .brand:hover{
-
     opacity:.85;
 }
 
-
-/*
-    ヘッダー用ロゴ
-
-    ここが大きくなりすぎないように
-    サイズを明確に固定
-*/
 
 .brand-logo{
 
@@ -447,8 +433,6 @@ section{
 }
 
 
-/* サイト名 */
-
 .brand-name{
 
     color:var(--champagne);
@@ -464,7 +448,7 @@ section{
 
 
 /* ======================================
-   PCナビゲーション
+   PCナビ
 ====================================== */
 
 .nav-menu{
@@ -492,20 +476,17 @@ section{
     white-space:nowrap;
 
     transition:
-        color .3s ease,
-        opacity .3s ease;
+        color .5s ease,
+        opacity .5s ease;
 }
 
 
 .nav-menu a:hover{
-
     color:var(--gold);
 }
 
 
-/*
-    ナビゲーション下の細いライン
-*/
+/* 通常ナビの下線 */
 
 .nav-menu a:not(.header-reservation)::after{
 
@@ -523,24 +504,33 @@ section{
 
     background:var(--gold);
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     transition:
-        width .3s ease;
+        width .5s ease;
 }
 
 
 .nav-menu a:not(.header-reservation):hover::after{
-
     width:100%;
 }
 
 
 /* ======================================
-   ヘッダー予約ボタン
+   予約ボタン
 ====================================== */
 
+/*
+   上下移動なし。
+
+   ホバーするとゴールドが
+   左からゆっくり広がります。
+*/
+
 .header-reservation{
+
+    position:relative;
 
     display:inline-flex;
 
@@ -549,10 +539,11 @@ section{
     justify-content:center;
 
     padding:
-        8px
-        20px;
+        8px 20px;
 
     margin-left:5px;
+
+    min-width:130px;
 
     border:
         1px solid var(--gold);
@@ -561,51 +552,71 @@ section{
 
     color:var(--gold) !important;
 
-    background:
-        rgba(212,175,55,.04);
+    background:transparent;
 
-    font-size:.9rem;
+    overflow:hidden;
+
+    isolation:isolate;
 
     letter-spacing:1px;
 
-    white-space:nowrap;
+    transition:
+        color .7s ease,
+        border-color .7s ease;
+}
+
+
+.header-reservation::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:var(--gold);
+
+    transform:
+        scaleX(0);
+
+    transform-origin:left center;
 
     transition:
-        background .3s ease,
-        color .3s ease,
-        transform .3s ease,
-        box-shadow .3s ease;
+        transform .7s cubic-bezier(.4,0,.2,1);
+
+    z-index:-1;
+}
+
+
+.header-reservation span{
+
+    position:relative;
+
+    z-index:1;
 }
 
 
 .header-reservation:hover{
 
-    background:var(--gold);
-
     color:var(--bg) !important;
 
-    transform:
-        translateY(-2px);
+    border-color:var(--gold);
 
-    box-shadow:
-        0 8px 20px
-        rgba(212,175,55,.15);
+    transform:none;
+
+    box-shadow:none;
 }
 
 
-/*
-    予約ボタンには下線を付けない
-*/
+.header-reservation:hover::before{
 
-.nav-menu
-.header-reservation::after{
-
-    display:none !important;
+    transform:
+        scaleX(1);
 }
 
 
 /* ======================================
-   ハンバーガーメニュー
+   ハンバーガー
 ====================================== */
 
 .hamburger{
@@ -656,13 +667,7 @@ section{
 }
 
 
-/*
-    開いた時に
-    「×」になる
-*/
-
-.hamburger.active
-span:nth-child(1){
+.hamburger.active span:nth-child(1){
 
     transform:
         translateY(8px)
@@ -670,15 +675,12 @@ span:nth-child(1){
 }
 
 
-.hamburger.active
-span:nth-child(2){
-
+.hamburger.active span:nth-child(2){
     opacity:0;
 }
 
 
-.hamburger.active
-span:nth-child(3){
+.hamburger.active span:nth-child(3){
 
     transform:
         translateY(-8px)
@@ -709,9 +711,7 @@ span:nth-child(3){
     gap:24px;
 
     padding:
-        35px
-        20px
-        40px;
+        35px 20px 40px;
 
     background:
         rgba(36,23,15,.97);
@@ -724,18 +724,14 @@ span:nth-child(3){
         1px solid var(--line);
 
     box-shadow:
-        0 20px 40px rgba(0,0,0,.3);
+        0 20px 40px
+        rgba(0,0,0,.3);
 
     z-index:999;
 }
 
 
-/*
-    JSによって .active が付いた時に表示
-*/
-
 .mobile-menu.active{
-
     display:flex;
 }
 
@@ -749,8 +745,8 @@ span:nth-child(3){
     letter-spacing:1px;
 
     transition:
-        color .3s ease,
-        transform .3s ease;
+        color .5s ease,
+        transform .5s ease;
 }
 
 
@@ -775,8 +771,7 @@ span:nth-child(3){
 
     overflow:hidden;
 
-    background:
-        #24170F;
+    background:#24170F;
 
     display:flex;
 
@@ -785,10 +780,6 @@ span:nth-child(3){
     justify-content:center;
 }
 
-
-/*
-    pictureを画面いっぱいに配置
-*/
 
 .hero picture{
 
@@ -804,13 +795,6 @@ span:nth-child(3){
 }
 
 
-/*
-    Hero画像
-
-    PC / Tablet / Mobileの
-    picture切り替えに対応
-*/
-
 .hero picture img{
 
     width:100%;
@@ -824,10 +808,6 @@ span:nth-child(3){
     transform-origin:center center;
 }
 
-
-/*
-    森の画像を少し暗くする
-*/
 
 .hero-overlay{
 
@@ -869,14 +849,9 @@ span:nth-child(3){
 
     z-index:10;
 
-    padding:
-        20px;
+    padding:20px;
 }
 
-
-/* ======================================
-   Hero ロゴ
-====================================== */
 
 .hero-logo{
 
@@ -889,8 +864,6 @@ span:nth-child(3){
     margin:
         0 auto 25px;
 
-    display:block;
-
     filter:
         drop-shadow(
             0 5px 20px
@@ -898,10 +871,6 @@ span:nth-child(3){
         );
 }
 
-
-/* ======================================
-   Hero サブタイトル
-====================================== */
 
 .hero-subtitle{
 
@@ -913,16 +882,11 @@ span:nth-child(3){
 
     margin-bottom:15px;
 
-    text-transform:none;
-
     text-shadow:
-    0 2px 12px rgba(0,0,0,.8);
+        0 2px 12px
+        rgba(0,0,0,.8);
 }
 
-
-/* ======================================
-   Hero メインタイトル
-====================================== */
 
 .hero-content h1{
 
@@ -939,21 +903,17 @@ span:nth-child(3){
     margin-bottom:20px;
 
     text-shadow:
-        0 4px 20px rgba(0,0,0,.5);
+        0 4px 20px
+        rgba(0,0,0,.5);
 
-/* 日本語の句読点による視覚的なズレを補正 */
-    transform:translateX(0.15em);
+    transform:
+        translateX(.15em);
 }
 
 
-/* ======================================
-   Hero 説明文
-====================================== */
-
 .hero-description{
 
-    color:
-        #E2D8CC;
+    color:#E2D8CC;
 
     font-size:1rem;
 
@@ -962,19 +922,13 @@ span:nth-child(3){
     margin-bottom:0;
 
     text-shadow:
-        0 2px 10px rgba(0,0,0,.5);
+        0 2px 10px
+        rgba(0,0,0,.5);
 }
 
 
-/*
-    今回Hero中央から予約ボタンを
-    外したため、hero内には
-    予約ボタンを置かない設計
-*/
-
-
 /* ======================================
-   ボタン共通
+   共通ボタン
 ====================================== */
 
 .btn{
@@ -988,8 +942,7 @@ span:nth-child(3){
     min-height:50px;
 
     padding:
-        13px
-        32px;
+        13px 32px;
 
     border-radius:999px;
 
@@ -1008,8 +961,8 @@ span:nth-child(3){
     overflow:hidden;
 
     transition:
-        transform .3s ease,
-        box-shadow .3s ease;
+        transform .4s ease,
+        box-shadow .4s ease;
 }
 
 
@@ -1023,10 +976,6 @@ span:nth-child(3){
         rgba(212,175,55,.15);
 }
 
-
-/*
-    ボタンに光が流れる
-*/
 
 .btn::before{
 
@@ -1056,24 +1005,19 @@ span:nth-child(3){
 
 
 .btn:hover::before{
-
     left:150%;
 }
 
 
-/*
-    Instagramボタンなどの
-    セクション内ボタン用
-*/
+/* Instagramボタン */
 
 .instagram .btn{
-
     margin-top:5px;
 }
 
 
 /* ======================================
-   Recommended Cards
+   Recommended
 ====================================== */
 
 .cards{
@@ -1099,8 +1043,7 @@ span:nth-child(3){
 
     overflow:hidden;
 
-    box-shadow:
-        var(--shadow);
+    box-shadow:var(--shadow);
 
     transition:
         transform .4s ease,
@@ -1115,7 +1058,8 @@ span:nth-child(3){
         translateY(-10px);
 
     box-shadow:
-        0 25px 50px rgba(0,0,0,.45);
+        0 25px 50px
+        rgba(0,0,0,.45);
 
     border-color:
         rgba(212,175,55,.2);
@@ -1133,7 +1077,6 @@ span:nth-child(3){
 
 
 .card-body{
-
     padding:25px;
 }
 
@@ -1157,7 +1100,7 @@ span:nth-child(3){
 
 
 /* ======================================
-   店舗紹介
+   Store
 ====================================== */
 
 .store-grid{
@@ -1180,8 +1123,7 @@ span:nth-child(3){
 
     border-radius:15px;
 
-    box-shadow:
-        var(--shadow);
+    box-shadow:var(--shadow);
 }
 
 
@@ -1206,13 +1148,11 @@ span:nth-child(3){
 
 
 .store-content{
-
     text-align:left;
 }
 
 
-.store-content
-.section-title{
+.store-content .section-title{
 
     text-align:left;
 
@@ -1234,18 +1174,94 @@ span:nth-child(3){
    Instagram
 ====================================== */
 
+/*
+    instagram.jpgを背景として使用。
+
+    写真は見えるようにしつつ、
+    NOIR CAFEらしい暗いブラウンを
+    ほんのり重ねます。
+*/
+
 .instagram{
+
+    position:relative;
+
+    overflow:hidden;
 
     text-align:center;
 
-    background:
-        rgba(18,11,7,.18);
+    background:#1A120B;
 }
 
+
+/* 森の写真 */
+
+.instagram-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+        url("../images/instagram.jpg");
+
+    background-size:cover;
+
+    background-position:center center;
+
+    opacity:.34;
+
+    transform:
+        scale(1.03);
+
+    z-index:0;
+}
+
+
+/*
+    写真の上に薄いブラウンを重ねる
+
+    以前よりかなり薄くして、
+    写真を見えやすくしています。
+*/
+
+.instagram::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(26,18,11,.42) 0%,
+            rgba(26,18,11,.28) 50%,
+            rgba(18,11,7,.55) 100%
+        );
+
+    z-index:1;
+}
+
+
+/* コンテンツを写真より前へ */
+
+.instagram-content{
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* Instagram本文 */
 
 .instagram .section-text{
 
     margin-bottom:20px;
+
+    color:#D8CCBC;
 }
 
 
@@ -1255,39 +1271,122 @@ span:nth-child(3){
 
 .news-list{
 
-    width:100%;
+    width:min(760px,90%);
 
-    max-width:800px;
-
-    margin:0 auto;
+    margin:
+        0 auto;
 }
 
 
-.news-list li{
+.news-item{
+
+    width:100%;
+
+    background:transparent;
+}
+
+
+/* News本文 */
+
+.news-content{
 
     display:flex;
 
     align-items:center;
 
-    gap:20px;
+    gap:30px;
 
-    padding:20px 0;
-
-    color:var(--text);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.1);
+    padding:
+        22px 0;
 }
 
 
-.news-list span{
+/* 日付 */
+
+.news-date{
 
     color:var(--champagne);
 
-    font-size:.9rem;
+    font-size:.85rem;
 
     white-space:nowrap;
+
+    letter-spacing:.5px;
+}
+
+
+/* ニュース本文 */
+
+.news-content p{
+
+    color:var(--text);
+
+    font-size:1.05rem;
+
+    margin:0;
+
+    line-height:1.8;
+}
+
+
+/* ======================================
+   News 区切り線
+====================================== */
+
+/*
+    ───────── ◆ ─────────
+
+    線はリンク先の雰囲気に合わせ、
+    明るすぎないシャンパンゴールド。
+*/
+
+.news-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    width:100%;
+
+    margin:0;
+}
+
+
+/* 左右の線 */
+
+.news-divider::before,
+.news-divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:
+        rgba(200,169,126,.25);
+}
+
+
+/* 中央ダイヤ */
+
+.news-divider span{
+
+    width:6px;
+
+    height:6px;
+
+    flex-shrink:0;
+
+    background:
+        rgba(200,169,126,.88);
+
+    transform:
+        rotate(45deg);
+
+    box-shadow:none;
 }
 
 
@@ -1352,8 +1451,7 @@ span:nth-child(3){
 
 footer{
 
-    background:
-        #120B07;
+    background:#120B07;
 
     padding:
         60px 20px;
@@ -1397,18 +1495,14 @@ footer{
 }
 
 
+.holiday{
+    margin-left:20px;
+}
+
+
 /* ======================================
    GSAP / スクロールアニメーション
 ====================================== */
-
-/*
-    gsap.jsでアニメーションさせるための初期状態
-
-    JavaScriptが動かない場合でも
-    コンテンツが完全に消えないようにするため、
-    animation用クラスを使う場合は
-    JS側との連携が必要です。
-*/
 
 .fade-section{
 
@@ -1421,7 +1515,6 @@ footer{
 
 /* ======================================
    Tablet
-   768px ～ 1199px
 ====================================== */
 
 @media (max-width:1199px){
@@ -1462,19 +1555,12 @@ footer{
     }
 
 
-    /*
-        タブレットではナビが窮屈になりやすいため、
-        ハンバーガーを表示
-    */
-
     .nav-menu{
-
         display:none;
     }
 
 
     .hamburger{
-
         display:flex;
     }
 
@@ -1506,48 +1592,46 @@ footer{
 
 
     .store-image img{
-
         height:400px;
     }
 
 
     .store-content{
-
         text-align:center;
     }
 
 
-    .store-content
-    .section-title{
-
+    .store-content .section-title{
         text-align:center;
     }
+
+
+    .news-list{
+        width:min(850px,90%);
+    }
+
 }
 
 
 /* ======================================
    Mobile
-   767px以下
 ====================================== */
 
 @media (max-width:767px){
 
     :root{
-
         --header-height:72px;
     }
 
 
-    /* ---------- 共通 ---------- */
+    section:not(.hero){
 
-    section{
-
-        padding:80px 0;
+        padding:
+            70px 0;
     }
 
 
     .container{
-
         width:88%;
     }
 
@@ -1570,7 +1654,7 @@ footer{
     }
 
 
-    /* ---------- Header ---------- */
+    /* Header */
 
     #header{
 
@@ -1591,7 +1675,6 @@ footer{
 
 
     .brand{
-
         gap:9px;
     }
 
@@ -1628,33 +1711,27 @@ footer{
     }
 
 
-    /*
-        モバイルメニュー
-    */
+    /* Mobile Menu */
 
     .mobile-menu{
 
         top:72px;
 
         padding:
-            30px
-            20px
-            35px;
+            30px 20px 35px;
 
         gap:20px;
     }
 
 
     .mobile-menu a{
-
         font-size:1rem;
     }
 
 
-    /* ---------- Hero ---------- */
+    /* Hero */
 
     .hero{
-
         min-height:100svh;
     }
 
@@ -1663,8 +1740,7 @@ footer{
 
         width:92%;
 
-        padding:
-            15px;
+        padding:15px;
     }
 
 
@@ -1709,7 +1785,7 @@ footer{
     }
 
 
-    /* ---------- Cards ---------- */
+    /* Cards */
 
     .cards{
 
@@ -1720,18 +1796,16 @@ footer{
 
 
     .card img{
-
         height:240px;
     }
 
 
     .card-body{
-
         padding:20px;
     }
 
 
-    /* ---------- Store ---------- */
+    /* Store */
 
     .store-grid{
 
@@ -1742,7 +1816,6 @@ footer{
 
 
     .store-image img{
-
         height:280px;
     }
 
@@ -1755,43 +1828,96 @@ footer{
     }
 
 
-    /* ---------- Instagram ---------- */
+    /* Instagram */
+
+    .instagram-bg{
+
+        opacity:.30;
+
+        background-position:center center;
+    }
+
+
+    .instagram::before{
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(26,18,11,.38) 0%,
+                rgba(26,18,11,.24) 50%,
+                rgba(18,11,7,.50) 100%
+            );
+    }
+
 
     .instagram .section-text{
-
         margin-bottom:25px;
     }
 
 
     .instagram .btn{
-
         margin-top:0;
     }
 
 
-    /* ---------- News ---------- */
+    /* News */
 
-    .news-list li{
+    .news-list{
+        width:90%;
+    }
 
-        flex-direction:column;
+
+    .news-content{
+
+        display:flex;
 
         align-items:flex-start;
 
-        gap:5px;
+        gap:12px;
 
-        padding:18px 0;
+        padding:
+            18px 0;
     }
 
 
-    .news-list span{
-
-        margin-right:0;
+    .news-date{
 
         font-size:.8rem;
+
+        flex-shrink:0;
     }
 
 
-    /* ---------- Page Top ---------- */
+    .news-content p{
+
+        font-size:.9rem;
+
+        line-height:1.7;
+    }
+
+
+    .news-divider{
+        gap:10px;
+    }
+
+
+    .news-divider::before,
+    .news-divider::after{
+
+        background:
+            rgba(200,169,126,.22);
+    }
+
+
+    .news-divider span{
+
+        width:5px;
+
+        height:5px;
+    }
+
+
+    /* Page Top */
 
     #page-top{
 
@@ -1805,19 +1931,19 @@ footer{
     }
 
 
-    /* ---------- Footer ---------- */
+    /* Footer */
 
     footer{
 
         padding:
             50px 20px;
     }
+
 }
 
 
 /* ======================================
    小型スマートフォン
-   480px以下
 ====================================== */
 
 @media (max-width:480px){
@@ -1847,31 +1973,39 @@ footer{
 
 
     .hero-content h1{
-
         font-size:1.85rem;
     }
 
 
     .hero-description{
-
         font-size:.8rem;
     }
+
+
+    .news-content{
+        gap:10px;
+    }
+
+
+    .news-date{
+        font-size:.75rem;
+    }
+
+
+    .news-content p{
+        font-size:.85rem;
+    }
+
 }
 
 
 /* ======================================
-   アニメーション軽減設定
+   アニメーション軽減
 ====================================== */
-
-/*
-    OS側で「視差効果を減らす」設定をしている
-    ユーザーには、アニメーションを弱める。
-*/
 
 @media (prefers-reduced-motion:reduce){
 
     html{
-
         scroll-behavior:auto;
     }
 
@@ -1889,7 +2023,6 @@ footer{
 
 
     .hero picture img{
-
         transform:none;
     }
 
@@ -1900,4 +2033,5 @@ footer{
 
         transform:none;
     }
+
 }
