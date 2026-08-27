@@ -349,13 +349,17 @@ section{
         rgba(0,0,0,.25);
 }
 
+
 /* ======================================
    Concept
 ====================================== */
 
 .concept .section-text{
+
     max-width:1000px;
+
     margin-left:auto;
+
     margin-right:auto;
 }
 
@@ -388,6 +392,17 @@ section{
 
     margin-bottom:0;
 }
+
+
+/* ======================================
+   タブレット・モバイルのみ改行
+====================================== */
+
+.mobile-break{
+
+    display:none;
+}
+
 
 /* ======================================
    ブランド
@@ -486,8 +501,6 @@ section{
 }
 
 
-/* 通常ナビの下線 */
-
 .nav-menu a:not(.header-reservation)::after{
 
     content:"";
@@ -520,13 +533,6 @@ section{
 /* ======================================
    予約ボタン
 ====================================== */
-
-/*
-   上下移動なし。
-
-   ホバーするとゴールドが
-   左からゆっくり広がります。
-*/
 
 .header-reservation{
 
@@ -1070,7 +1076,7 @@ section{
 
     width:100%;
 
-    height:300px;
+    height:220px;
 
     object-fit:cover;
 }
@@ -1167,20 +1173,14 @@ section{
     margin-bottom:30px;
 
     line-height:2;
+
+    text-align:left;
 }
 
 
 /* ======================================
    Instagram
 ====================================== */
-
-/*
-    instagram.jpgを背景として使用。
-
-    写真は見えるようにしつつ、
-    NOIR CAFEらしい暗いブラウンを
-    ほんのり重ねます。
-*/
 
 .instagram{
 
@@ -1193,8 +1193,6 @@ section{
     background:#1A120B;
 }
 
-
-/* 森の写真 */
 
 .instagram-bg{
 
@@ -1218,13 +1216,6 @@ section{
 }
 
 
-/*
-    写真の上に薄いブラウンを重ねる
-
-    以前よりかなり薄くして、
-    写真を見えやすくしています。
-*/
-
 .instagram::before{
 
     content:"";
@@ -1245,8 +1236,6 @@ section{
 }
 
 
-/* コンテンツを写真より前へ */
-
 .instagram-content{
 
     position:relative;
@@ -1254,8 +1243,6 @@ section{
     z-index:2;
 }
 
-
-/* Instagram本文 */
 
 .instagram .section-text{
 
@@ -1286,8 +1273,6 @@ section{
 }
 
 
-/* News本文 */
-
 .news-content{
 
     display:flex;
@@ -1301,8 +1286,6 @@ section{
 }
 
 
-/* 日付 */
-
 .news-date{
 
     color:var(--champagne);
@@ -1314,8 +1297,6 @@ section{
     letter-spacing:.5px;
 }
 
-
-/* ニュース本文 */
 
 .news-content p{
 
@@ -1333,13 +1314,6 @@ section{
    News 区切り線
 ====================================== */
 
-/*
-    ───────── ◆ ─────────
-
-    線はリンク先の雰囲気に合わせ、
-    明るすぎないシャンパンゴールド。
-*/
-
 .news-divider{
 
     display:flex;
@@ -1354,8 +1328,6 @@ section{
 }
 
 
-/* 左右の線 */
-
 .news-divider::before,
 .news-divider::after{
 
@@ -1369,8 +1341,6 @@ section{
         rgba(200,169,126,.25);
 }
 
-
-/* 中央ダイヤ */
 
 .news-divider span{
 
@@ -1565,6 +1535,13 @@ footer{
     }
 
 
+    /* タブレットでも改行 */
+
+    .mobile-break{
+        display:inline;
+    }
+
+
     .hero-content h1{
 
         font-size:3.2rem;
@@ -1596,6 +1573,8 @@ footer{
     }
 
 
+    /* Store見出し・ボタンは中央 */
+
     .store-content{
         text-align:center;
     }
@@ -1606,8 +1585,10 @@ footer{
     }
 
 
-    .news-list{
-        width:min(850px,90%);
+    /* Store本文だけ左寄せ */
+
+    .store-content p{
+        text-align:left;
     }
 
 }
@@ -1620,6 +1601,7 @@ footer{
 @media (max-width:767px){
 
     :root{
+
         --header-height:72px;
     }
 
@@ -1796,7 +1778,8 @@ footer{
 
 
     .card img{
-        height:240px;
+
+        height:140px;
     }
 
 
@@ -1825,6 +1808,8 @@ footer{
         font-size:.95rem;
 
         margin-bottom:25px;
+
+        text-align:left;
     }
 
 
@@ -1973,11 +1958,13 @@ footer{
 
 
     .hero-content h1{
+
         font-size:1.85rem;
     }
 
 
     .hero-description{
+
         font-size:.8rem;
     }
 
@@ -1993,7 +1980,14 @@ footer{
 
 
     .news-content p{
-        font-size:.85rem;
+
+        color:var(--text);
+
+        font-size:.95rem;
+
+        margin:0;
+
+        line-height:1.8;
     }
 
 }
