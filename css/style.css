@@ -395,16 +395,6 @@ section{
 
 
 /* ======================================
-   タブレット・モバイルのみ改行
-====================================== */
-
-.mobile-break{
-
-    display:none;
-}
-
-
-/* ======================================
    ブランド
 ====================================== */
 
@@ -501,6 +491,8 @@ section{
 }
 
 
+/* 通常ナビの下線 */
+
 .nav-menu a:not(.header-reservation)::after{
 
     content:"";
@@ -533,6 +525,13 @@ section{
 /* ======================================
    予約ボタン
 ====================================== */
+
+/*
+   上下移動なし。
+
+   ホバーするとゴールドが
+   左からゆっくり広がります。
+*/
 
 .header-reservation{
 
@@ -625,17 +624,17 @@ section{
    ハンバーガー
 ====================================== */
 
+/*
+   三本線を絶対配置にして、
+   ×へ変化するときも中央位置が
+   ずれないようにしています。
+*/
+
 .hamburger{
 
     display:none;
 
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:6px;
+    position:relative;
 
     width:44px;
 
@@ -657,7 +656,11 @@ section{
 
 .hamburger span{
 
-    display:block;
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
 
     width:28px;
 
@@ -667,21 +670,58 @@ section{
 
     border-radius:20px;
 
+    transform:
+        translate(-50%,-50%);
+
+    transform-origin:center;
+
     transition:
         transform .3s ease,
-        opacity .3s ease;
+        opacity .2s ease;
 }
 
+
+/* 1本目 */
+
+.hamburger span:nth-child(1){
+
+    transform:
+        translate(-50%,-8px);
+}
+
+
+/* 2本目 */
+
+.hamburger span:nth-child(2){
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* 3本目 */
+
+.hamburger span:nth-child(3){
+
+    transform:
+        translate(-50%,8px);
+}
+
+
+/* ======================================
+   ハンバーガー → ×
+====================================== */
 
 .hamburger.active span:nth-child(1){
 
     transform:
-        translateY(8px)
+        translate(-50%,-50%)
         rotate(45deg);
 }
 
 
 .hamburger.active span:nth-child(2){
+
     opacity:0;
 }
 
@@ -689,7 +729,7 @@ section{
 .hamburger.active span:nth-child(3){
 
     transform:
-        translateY(-8px)
+        translate(-50%,-50%)
         rotate(-45deg);
 }
 
@@ -762,6 +802,70 @@ section{
 
     transform:
         translateY(-2px);
+}
+
+
+/* ======================================
+   モバイル 予約ボタン
+====================================== */
+
+.mobile-reservation{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:min(240px,80%);
+
+    min-height:48px;
+
+    margin-top:8px;
+
+    padding:
+        11px 25px;
+
+    border:
+        1px solid var(--gold);
+
+    border-radius:999px;
+
+    background:
+        rgba(212,175,55,.10);
+
+    color:var(--gold) !important;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.15);
+
+    transition:
+        background .4s ease,
+        color .4s ease,
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+
+.mobile-reservation:hover{
+
+    background:var(--gold);
+
+    color:var(--bg) !important;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(212,175,55,.18);
 }
 
 
@@ -1173,14 +1277,20 @@ section{
     margin-bottom:30px;
 
     line-height:2;
-
-    text-align:left;
 }
 
 
 /* ======================================
    Instagram
 ====================================== */
+
+/*
+    instagram.jpgを背景として使用。
+
+    写真は見えるようにしつつ、
+    NOIR CAFEらしい暗いブラウンを
+    ほんのり重ねます。
+*/
 
 .instagram{
 
@@ -1193,6 +1303,8 @@ section{
     background:#1A120B;
 }
 
+
+/* 森の写真 */
 
 .instagram-bg{
 
@@ -1216,6 +1328,13 @@ section{
 }
 
 
+/*
+    写真の上に薄いブラウンを重ねる
+
+    以前よりかなり薄くして、
+    写真を見えやすくしています。
+*/
+
 .instagram::before{
 
     content:"";
@@ -1236,6 +1355,8 @@ section{
 }
 
 
+/* コンテンツを写真より前へ */
+
 .instagram-content{
 
     position:relative;
@@ -1243,6 +1364,8 @@ section{
     z-index:2;
 }
 
+
+/* Instagram本文 */
 
 .instagram .section-text{
 
@@ -1273,6 +1396,8 @@ section{
 }
 
 
+/* News本文 */
+
 .news-content{
 
     display:flex;
@@ -1286,6 +1411,8 @@ section{
 }
 
 
+/* 日付 */
+
 .news-date{
 
     color:var(--champagne);
@@ -1297,6 +1424,8 @@ section{
     letter-spacing:.5px;
 }
 
+
+/* ニュース本文 */
 
 .news-content p{
 
@@ -1314,6 +1443,13 @@ section{
    News 区切り線
 ====================================== */
 
+/*
+    ───────── ◆ ─────────
+
+    線はリンク先の雰囲気に合わせ、
+    明るすぎないシャンパンゴールド。
+*/
+
 .news-divider{
 
     display:flex;
@@ -1328,6 +1464,8 @@ section{
 }
 
 
+/* 左右の線 */
+
 .news-divider::before,
 .news-divider::after{
 
@@ -1341,6 +1479,8 @@ section{
         rgba(200,169,126,.25);
 }
 
+
+/* 中央ダイヤ */
 
 .news-divider span{
 
@@ -1535,13 +1675,6 @@ footer{
     }
 
 
-    /* タブレットでも改行 */
-
-    .mobile-break{
-        display:inline;
-    }
-
-
     .hero-content h1{
 
         font-size:3.2rem;
@@ -1573,8 +1706,6 @@ footer{
     }
 
 
-    /* Store見出し・ボタンは中央 */
-
     .store-content{
         text-align:center;
     }
@@ -1584,12 +1715,6 @@ footer{
         text-align:center;
     }
 
-
-    /* Store本文だけ左寄せ */
-
-    .store-content p{
-        text-align:left;
-    }
 
 }
 
@@ -1601,7 +1726,6 @@ footer{
 @media (max-width:767px){
 
     :root{
-
         --header-height:72px;
     }
 
@@ -1711,6 +1835,24 @@ footer{
     }
 
 
+    /* ==================================
+       Mobile 予約ボタン
+    ================================== */
+
+    .mobile-reservation{
+
+        width:min(240px,80%);
+
+        min-height:48px;
+
+        margin-top:8px;
+
+        font-size:1rem;
+
+        letter-spacing:2px;
+    }
+
+
     /* Hero */
 
     .hero{
@@ -1808,8 +1950,6 @@ footer{
         font-size:.95rem;
 
         margin-bottom:25px;
-
-        text-align:left;
     }
 
 
@@ -1958,13 +2098,11 @@ footer{
 
 
     .hero-content h1{
-
         font-size:1.85rem;
     }
 
 
     .hero-description{
-
         font-size:.8rem;
     }
 
